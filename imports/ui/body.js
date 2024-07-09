@@ -1,11 +1,15 @@
 import { Template } from 'meteor/templating';
 import './body.html';
 import './message.js';
-import { Messages } from '../api/messages.js';
+import { Messages } from '../api/messages/messages.js';
+
+Template.body.onCreated(function () {
+  this.subscribe('messages.all')
+})
 
 Template.body.helpers({
   messages() {
-    return Messages.find();
+    return Messages.find().fetch();
   },
 });
 
@@ -17,19 +21,18 @@ Template.body.events({
     // Get value from form element
     const target = event.target;
     const text = target.text.value;
+    try {
+      // Insert a message into the collection
+      const res = Meteor.callAsync('messages.insert', {
+        text
+      })
+      // Clear form
+      target.text.value = '';
 
-    // Insert a message into the collection
-    Messages.insert({
-      text,
-      createdAt: new Date(), // current time
-      owner: Meteor.userId(),
-      username: Meteor.user().username,
-    });
+      // scroll to last message
+      $('.panel-body').scrollTop($('.media-list').height())
 
-    // Clear form
-    target.text.value = '';
+    } catch (error) { }
 
-    // scroll to last message
-    $('.panel-body').scrollTop($('.media-list').height())
   },
 });

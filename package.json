@@ -2,9 +2,21 @@
   "name": "simple-chat",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "meteor run",
+    "test": "meteor test --once --driver-package meteortesting:mocha",
+    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {
-    "meteor-node-stubs": "~0.2.0"
+    "@babel/runtime": "^7.23.5",
+    "crypto-js": "^4.2.0",
+    "jquery": "^3.7.1",
+    "meteor-node-stubs": "^1.2.7"
+  },
+  "meteor": {
+    "mainModule": {
+      "client": "client/main.js",
+      "server": "server/main.js"
+    }
   }
 }
