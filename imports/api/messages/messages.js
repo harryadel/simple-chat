@@ -7,8 +7,9 @@ const Messages = new Mongo.Collection('messages');
 Messages.attachSchema(
     new SimpleSchema({
         text: String,
-        createdAt: Date, // current time
+        createdAt: Date, 
         email: String,
+        userId: String,
     })
 )
 

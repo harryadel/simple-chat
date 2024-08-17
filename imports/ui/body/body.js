@@ -1,7 +1,8 @@
 import { Template } from 'meteor/templating';
 import './body.html';
-import './message.js';
-import { Messages } from '../api/messages/messages.js';
+import './body.css';
+import '../message/message.js';
+import { Messages } from '../../api/messages/messages.js';
 
 Template.body.onCreated(function () {
   this.subscribe('messages.all')
