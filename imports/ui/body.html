@@ -1,37 +1,27 @@
 <body>
-  <div class="container">
-    <div class="row">
-      <h3 class="text-center" >SIMPLE METEOR CHAT</h3>
-      <h5 class="text-center text-muted">Sign in to join!</h5>
-      <div class="col-md-12">
-        {{> loginButtons}}
-        <div class="panel panel-info">
-          <div class="panel-heading">
-            GROUP CHAT
-          </div>
-          <div class="panel-body">
-            <ul class="media-list">
-              <!-- message template -->
-              {{#each messages}}
-                {{> message}}
-              {{/each}}
-            </ul>
-          </div>
-          {{#if currentUser}}
-          <!-- message textbox -->
-          <form class="new-message">
-            <div class="panel-footer">
-              <div class="input-group">
-                <input type="text" name="text" class="form-control" placeholder="Enter Message" />
-                <span class="input-group-btn">
-                  <button class="btn btn-info send" type="submit">SEND</button>
-                </span>
-              </div>
+    <div class="container">
+        <h3>SIMPLE METEOR CHAT</h3>
+        <h5>Sign in to join!</h5>
+        <!-- Placeholder for login buttons -->
+        <div>{{> loginButtons}}</div>
+        <div class="chat-panel">
+            <div class="chat-header">
+                GROUP CHAT
             </div>
-          </form>
-          {{/if}}
+            <div class="chat-body">
+                <ul class="message-list">
+                    <!-- message template -->
+                    {{#each messages}}
+                        {{> message}}
+                    {{/each}}
+                </ul>
+            </div>
+            {{#if currentUser}}
+            <form class="new-message">
+                <input type="text" name="text" class="message-input" placeholder="Enter Message" />
+                <button class="send-button" type="submit">SEND</button>
+            </form>
+            {{/if}}
         </div>
-      </div>
     </div>
-  </div>
 </body>
