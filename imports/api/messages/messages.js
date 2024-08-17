@@ -8,7 +8,6 @@ Messages.attachSchema(
     new SimpleSchema({
         text: String,
         createdAt: Date, 
-        email: String,
         userId: String,
     })
 )

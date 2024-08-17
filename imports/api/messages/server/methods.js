@@ -8,7 +8,7 @@ Meteor.methods({
         await Messages.insertAsync({ 
             text,
             createdAt: new Date(),
-            email: currentUser.emails[0].address
+            userId: currentUser._id
          });
     }
 })
