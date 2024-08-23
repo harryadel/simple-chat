@@ -1,4 +1,5 @@
 import { Messages } from "../messages";
+import { check } from 'meteor/check';
 
 Meteor.methods({
     async 'messages.insert'({ text }) {
