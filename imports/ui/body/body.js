@@ -4,6 +4,21 @@ import './body.css';
 import '../message/message.js';
 import { Messages } from '../../api/messages/messages.js';
 
+Template.body.onRendered(function () {
+  this.autorun(() => {
+    // This will re-run whenever the messages change
+    Messages.find().fetch(); // This triggers the reactivity
+
+    Meteor.setTimeout(() => {
+      const chatBody = document.querySelector('.chat-body');
+      if (chatBody) {
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+    }, 100);
+  });
+});
+
+
 Template.body.onCreated(function () {
   this.subscribe('messages.all')
 })
@@ -22,21 +37,13 @@ Template.body.events({
     // Get value from form element
     const target = event.target;
     const text = target.text.value;
-    try {
-      // Insert a message into the collection
-      const res = Meteor.callAsync('messages.insert', {
-        text
-      })
-      // Clear form
-      target.text.value = '';
 
-      const chatContainer = document.querySelector('.chat-container');
-      const messagesList = document.querySelector('.messages-list');
-
-      if (chatContainer && messagesList) {
-        chatContainer.scrollTop = messagesList.scrollHeight;
-      }
-    } catch (error) { }
+    // Insert a message into the collection
+    Meteor.callAsync('messages.insert', {
+      text
+    })
+    // Clear form
+    target.text.value = '';
 
   },
 });
