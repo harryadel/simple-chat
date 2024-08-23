@@ -30,9 +30,12 @@ Template.body.events({
       // Clear form
       target.text.value = '';
 
-      // scroll to last message
-      $('.panel-body').scrollTop($('.media-list').height())
+      const chatContainer = document.querySelector('.chat-container');
+      const messagesList = document.querySelector('.messages-list');
 
+      if (chatContainer && messagesList) {
+        chatContainer.scrollTop = messagesList.scrollHeight;
+      }
     } catch (error) { }
 
   },
