@@ -5,6 +5,6 @@ Meteor.publish({
     async 'messages.all'() {
         if (!this.userId) return this.ready();
         
-        return (await Messages.find());
+        return await Messages.find();
     }
 })
