@@ -1,14 +1,14 @@
-import sha256 from 'crypto-js/sha256'
 import { Template } from 'meteor/templating';
 import './message.html';
 import './message.css';
 
+Template.message.onCreated(function() {
+    this.subscribe('users.emails');
+});
+
 Template.message.helpers({
-    avatar() {
-        const hashedEmail = sha256(Meteor.user().emails[0].address)
-        return `https://gravatar.com/avatar/${hashedEmail}`
-    },
     userEmail() {
-        return Meteor.user().emails[0].address
+        const user = Meteor.users.findOne(this.userId);
+        return user?.emails?.[0]?.address || 'Unknown User';
     }
 })

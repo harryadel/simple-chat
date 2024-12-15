@@ -1,34 +1,25 @@
 .message-item {
     list-style-type: none;
     margin-bottom: 20px;
-  }
-  .message-content {
+}
+.message-content {
     display: flex;
     align-items: flex-start;
-  }
-  .message-avatar {
-    margin-right: 15px;
-  }
-  .message-avatar img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  .message-body {
+}
+.message-body {
     flex-grow: 1;
-  }
-  .message-text {
+}
+.message-text {
     margin: 0 0 10px 0;
-  }
-  .message-info {
+}
+.message-info {
     font-size: 0.8em;
     color: #666;
-  }
-  .message-author {
+}
+.message-author {
     font-weight: bold;
     margin-right: 10px;
-  }
-  .message-time {
+}
+.message-time {
     font-style: italic;
-  }
+}
