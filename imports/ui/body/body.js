@@ -4,20 +4,6 @@ import './body.css';
 import '../message/message.js';
 import { Messages } from '../../api/messages/messages.js';
 
-Template.body.onRendered(function () {
-  this.autorun(() => {
-    // This will re-run whenever the messages change
-    Messages.find().fetch(); // This triggers the reactivity
-
-    Meteor.setTimeout(() => {
-      const chatBody = document.querySelector('.chat-body');
-      if (chatBody) {
-        chatBody.scrollTop = chatBody.scrollHeight;
-      }
-    }, 100);
-  });
-});
-
 
 Template.body.onCreated(function () {
   this.subscribe('messages.all')
@@ -25,7 +11,7 @@ Template.body.onCreated(function () {
 
 Template.body.helpers({
   messages() {
-    return Messages.find().fetch();
+    return Messages.find({}, { sort: { createdAt: 1 } }).fetch();
   },
 });
 
