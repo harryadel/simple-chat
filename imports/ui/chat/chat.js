@@ -1,21 +1,21 @@
 import { Template } from 'meteor/templating';
-import './body.html';
-import './body.css';
+import './chat.html';
+import './chat.css';
 import '../message/message.js';
 import { Messages } from '../../api/messages/messages.js';
 
 
-Template.body.onCreated(function () {
+Template.chat.onCreated(function () {
   this.subscribe('messages.all')
 })
 
-Template.body.helpers({
+Template.chat.helpers({
   messages() {
     return Messages.find({}, { sort: { createdAt: 1 } }).fetch();
   },
 });
 
-Template.body.events({
+Template.chat.events({
   'submit .new-message'(event) {
     // Prevent default browser form submit
     event.preventDefault();
